@@ -24,7 +24,7 @@
 <table>
   <tr align="center">
     <th>채팅(팀장)</th>
-    <th>인증</th>
+    <th>음악</th>
     <th>친구</th>
     <th>그룹</th>
   </tr>
