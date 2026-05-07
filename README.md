@@ -232,11 +232,208 @@ Redis 대신 DB 테이블로 구현하되 `ON DUPLICATE KEY UPDATE`를 활용해
 
 <details>
   <summary>Jenkins Pipline</summary>
-  <blockquote>
-    <details><summary>backend</summary></details>
-    <details><summary>frontend</summary></details>
-    <details><summary>k8s</summary></details>
-  </blockquote>
+  <br>
+<details>
+  <summary>backend</summary>
+
+```groovy
+pipeline {
+    agent {
+        kubernetes {
+            yaml '''
+            apiVersion: v1
+            kind: Pod
+            metadata:
+              name: jenkins-agent
+            spec:
+              containers:
+              - name: docker
+                image: docker:29.4.1-cli-alpine3.23
+                command:
+                - cat
+                tty: true
+                volumeMounts:
+                - mountPath: "/var/run/docker.sock"
+                  name: docker-socket
+              volumes:
+              - name: docker-socket
+                hostPath:
+                  path: "/var/run/docker.sock"
+            '''
+        }
+    }
+
+    environment {
+        DOCKER_IMAGE_NAME = "huisuz/beatbuddy-backend"
+        DOCKER_CREDENTIALS_ID = "dockerhub-access"
+    }
+
+    stages {
+        stage('Docker Image Build & Push') {
+            steps {
+                container('docker') {
+                    script {
+                        def buildNumber = "${env.BUILD_NUMBER}"
+
+                        sh 'docker logout'
+
+                        withCredentials([usernamePassword(
+                            credentialsId: DOCKER_CREDENTIALS_ID,
+                            usernameVariable: 'DOCKER_USERNAME',
+                            passwordVariable: 'DOCKER_PASSWORD'
+                        )]) {
+                            sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
+                        }
+
+                        withEnv(["DOCKER_IMAGE_VERSION=${buildNumber}"]) {
+                            sh 'docker build --no-cache -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_VERSION ./'
+                            sh 'docker push $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_VERSION'
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Trigger beatbuddy-k8s-manifests') {
+            steps {
+                script {
+                    def buildNumber = "${env.BUILD_NUMBER}"
+                    withEnv(["DOCKER_IMAGE_VERSION=${buildNumber}"]) {
+                        build job: 'beatbuddy-k8s-manifests',
+                            parameters: [
+                                string(name: 'DOCKER_IMAGE_VERSION', value: "${DOCKER_IMAGE_VERSION}")
+                            ],
+                            wait: true
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+</details>
+    
+<details>
+  <summary>frontend</summary>
+  
+```groovy
+pipeline {
+    agent {
+        kubernetes {
+            yaml '''
+            apiVersion: v1
+            kind: Pod
+            metadata:
+              name: jenkins-agent
+            spec:
+              containers:
+              - name: docker
+                image: docker:29.4.1-cli-alpine3.23
+                command:
+                - cat
+                tty: true
+                volumeMounts:
+                - mountPath: "/var/run/docker.sock"
+                  name: docker-socket
+              volumes:
+              - name: docker-socket
+                hostPath:
+                  path: "/var/run/docker.sock"
+            '''
+        }
+    }
+
+    environment {
+        DOCKER_IMAGE_NAME = "huisuz/beatbuddy-frontend"
+        DOCKER_CREDENTIALS_ID = "dockerhub-access"
+    }
+
+    stages {
+        stage('Docker Image Build & Push') {
+            steps {
+                container('docker') {
+                    script {
+                        def buildNumber = "${env.BUILD_NUMBER}"
+                        sh 'docker logout'
+                        withCredentials([usernamePassword(
+                            credentialsId: DOCKER_CREDENTIALS_ID,
+                            usernameVariable: 'DOCKER_USERNAME',
+                            passwordVariable: 'DOCKER_PASSWORD'
+                        )]) {
+                            sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
+                        }
+                        withEnv(["DOCKER_IMAGE_VERSION=${buildNumber}"]) {
+                            sh 'docker build --no-cache -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_VERSION ./'
+                            sh 'docker push $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_VERSION'
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Trigger beatbuddy-k8s-manifests') {
+            steps {
+                script {
+                    def buildNumber = "${env.BUILD_NUMBER}"
+                    withEnv(["DOCKER_IMAGE_VERSION=${buildNumber}"]) {
+                        build job: 'beatbuddy-k8s-manifests',
+                            parameters: [
+                                string(name: 'DOCKER_IMAGE_VERSION', value: "${DOCKER_IMAGE_VERSION}"),
+                                string(name: 'SERVICE', value: 'frontend')
+                            ],
+                            wait: true
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+</details>
+
+<details>
+  <summary>k8s</summary>
+
+```groovy
+pipeline {
+    agent any
+    parameters {
+        string(name: 'DOCKER_IMAGE_VERSION', defaultValue: '', description: 'Docker Image Version')
+        choice(name: 'SERVICE', choices: ['backend', 'frontend'], description: 'Service to update')
+    }
+    stages {
+        stage('Update deploy.yaml') {
+            steps {
+                dir("${params.SERVICE}") {
+                    sh 'git checkout main'
+                    sh "sed -i 's|huisuz/beatbuddy-${params.SERVICE}:.*|huisuz/beatbuddy-${params.SERVICE}:${params.DOCKER_IMAGE_VERSION}|g' deploy.yaml"
+                    sh 'cat deploy.yaml'
+                }
+            }
+        }
+        stage('Commit & Push') {
+            steps {
+                sh 'git config user.name "jenkins"'
+                sh 'git config user.email "jenkins@beatbuddy.com"'
+                sh 'git add .'
+                sh "git commit -m 'Update ${params.SERVICE} image to ${params.DOCKER_IMAGE_VERSION}'"
+                sshagent(['github-beatbuddy-k8s']) {
+                    sh '''
+                        mkdir -p ~/.ssh
+                        ssh-keyscan github.com >> ~/.ssh/known_hosts
+                        git remote set-url origin git@github.com:huisu73/beatbuddy-k8s.git
+                        git push origin main
+                    '''
+                }
+            }
+        }
+    }
+}
+```
+
+</details>
 </details>
 
 ---
