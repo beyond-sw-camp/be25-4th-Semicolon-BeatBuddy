@@ -232,7 +232,7 @@ Redis 대신 DB 테이블로 구현하되 `ON DUPLICATE KEY UPDATE`를 활용해
 
 <details>
   <summary>Jenkins Pipline</summary>
-  <br>
+  -------------------
 <details>
   <summary>backend</summary>
 
