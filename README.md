@@ -24,18 +24,14 @@
 <table>
   <tr align="center">
     <th>채팅(팀장)</th>
-    <th>음악</th>
     <th>인증</th>
     <th>친구</th>
-    <th>마이페이지</th>
     <th>그룹</th>
   </tr>
   <tr align="center">
     <td>김예지</td>
     <td>박하얀</td>
-    <td>방지혁</td>
     <td>이다윗</td>
-    <td>허진호</td>
     <td>황희수</td>
   </tr>
 </table>
@@ -257,13 +253,7 @@ Redis 대신 DB 테이블로 구현하되 `ON DUPLICATE KEY UPDATE`를 활용해
 #### 박하얀
 > _
 
-#### 방지혁
-> _
-
 #### 이다윗
-> _
-
-#### 허진호
 > _
 
 #### 황희수
