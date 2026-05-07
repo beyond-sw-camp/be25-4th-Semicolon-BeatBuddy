@@ -139,7 +139,7 @@ Redis 대신 DB 테이블로 구현하되 `ON DUPLICATE KEY UPDATE`를 활용해
 </details>
 <details>
 <summary> 빌드구성 </summary>
-<img width="1800" height="700" alt="beatbuddy-build-pipeline (1) drawio (4)" src="https://github.com/user-attachments/assets/b2c92d02-b288-4629-b317-8090ea46a008" />
+<img width="1201" height="651" alt="beatbuddy-build-pipeline (1) drawio (5)" src="https://github.com/user-attachments/assets/0b7ee82e-4e86-4b0c-8cae-344970ce7f1b" />
 </details>
 
 ---
