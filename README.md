@@ -246,6 +246,15 @@ Redis 대신 DB 테이블로 구현하되 `ON DUPLICATE KEY UPDATE`를 활용해
 
 ---
 
+## :film_projector: 주요 기능 시연 영상
+
+<details>
+  <summary>주요 기능 시연 영상</summary>
+  https://github.com/user-attachments/assets/db7087dd-5fd0-4903-8be5-49fc0aee5cd4
+</details>
+
+---
+
 ### 💬 회고록
 
 #### 김예지
