@@ -195,7 +195,7 @@
 | 이메일 | ![Gmail](https://img.shields.io/badge/GmailSMTP-EA4335?style=for-the-badge&logo=gmail&logoColor=white) |
 | 실시간 채팅 | ![WebSocket](https://img.shields.io/badge/WebSocket(STOMP)-010101?style=for-the-badge) |
 | 외부 API | ![Spotify](https://img.shields.io/badge/SpotifyAPI-1DB954?style=for-the-badge&logo=spotify&logoColor=white)&nbsp;![RapidAPI](https://img.shields.io/badge/RapidAPI-0055DA?style=for-the-badge&logo=rapid&logoColor=white) |
-| Infra/DevOps |  |
+| Infra/DevOps | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)&nbsp;![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)&nbsp;![Jenkins](https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white) |
 
 </details>
 
@@ -228,6 +228,15 @@ Redis 대신 DB 테이블로 구현하되 `ON DUPLICATE KEY UPDATE`를 활용해
 <details>
 <summary>빌드 구성</summary>
   <img width="4804" height="2604" alt="beatbuddy-build-pipeline (1) (1)" src="https://github.com/user-attachments/assets/62d63a60-d910-4076-a987-ad47390bba84" />
+</details>
+
+<details>
+  <summary>Jenkins Pipline</summary>
+  <blockquote>
+    <details><summary>backend</summary></details>
+    <details><summary>frontend</summary></details>
+    <details><summary>k8s</summary></details>
+  </blockquote>
 </details>
 
 ---
