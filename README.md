@@ -440,16 +440,6 @@ pipeline {
 
 ## 🚀 CI/CD 배포 결과
 
-<details>
-  <summary></summary>
-</details>
-<details>
-  <summary></summary>
-</details>
-<details>
-  <summary></summary>
-</details>
-
 ---
 
 ## :film_projector: 주요 기능 시연 영상
