@@ -222,12 +222,12 @@ Redis 대신 DB 테이블로 구현하되 `ON DUPLICATE KEY UPDATE`를 활용해
 ## ⚙️ CI/CD 구조
 <details>
 <summary>아키텍처</summary>
-  <img width="4988" height="3084" alt="beatbuddy-service-architecture (2)" src="https://github.com/user-attachments/assets/4dadfb9c-c850-4d5e-9151-c3bb234d9110" />
+  <img width="4988" height="3084" alt="beatbuddy-service-architecture (4)" src="https://github.com/user-attachments/assets/b9b16887-47bf-429e-a367-9ca11b20bcc3" />
 </details>
 
 <details>
 <summary>빌드 구성</summary>
-  <img width="4804" height="2604" alt="beatbuddy-build-pipeline (1)" src="https://github.com/user-attachments/assets/d789366a-8a9a-4665-a279-8c4e016602ec" />
+  <img width="4804" height="2604" alt="beatbuddy-build-pipeline (1) (1)" src="https://github.com/user-attachments/assets/62d63a60-d910-4076-a987-ad47390bba84" />
 </details>
 
 ---
