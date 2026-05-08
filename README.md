@@ -30,17 +30,17 @@
   </tr>
 
   <tr>
-    <td align="center"><img width="120" alt="김예지" src="./introduce/yeazi.png" /></td>
-    <td align="center"><img width="120" alt="박하얀" src="./introduce/hayan.png" /></td>   
-    <td align="center"><img width="120" alt="이다윗" src="./introduce/leedawit.png" /></td>   
-    <td align="center"><img width="120" alt="황희수" src="./introduce/huisu.png" /></td>
+    <td align="center"><img width="120" height="180" alt="김예지" src="./introduce/yeazi.png" /></td>
+    <td align="center"><img width="120" height="180" alt="박하얀" src="./introduce/hayan.png" /></td>   
+    <td align="center"><img width="120" height="180" alt="이다윗" src="./introduce/leedawit.png" /></td>   
+    <td align="center"><img width="120" height="180" alt="황희수" src="./introduce/huisu.png" /></td>
   </tr>
   
   <tr align="center">
-    <td>김예지</td>
-    <td>박하얀</td>
-    <td>이다윗</td>
-    <td>황희수</td>
+    <th>김예지</th>
+    <th>박하얀</th>
+    <th>이다윗</th>
+    <th>황희수</th>
   </tr>
 </table>
 
