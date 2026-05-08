@@ -32,7 +32,7 @@
   <tr>
     <td align="center"><img width="120" alt="김예지" src="./introduce/yeazi.png" /></td>
     <td align="center"><img width="120" alt="박하얀" src="./introduce/hayan.png" /></td>   
-    <td align="center"><img width="120" alt="이다윗" src="./introduce/leedawit.webp" /></td>   
+    <td align="center"><img width="120" alt="이다윗" src="./introduce/leedawit.png" /></td>   
     <td align="center"><img width="120" alt="황희수" src="./introduce/huisu.png" /></td>
   </tr>
   
