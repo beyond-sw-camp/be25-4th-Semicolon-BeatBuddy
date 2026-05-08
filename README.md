@@ -13,7 +13,7 @@
 8. [🎯 API 명세서](#-api-명세서)
 9. [🖥 화면 및 기능 설계서](#-화면-및-기능-설계서)
 10. [🧪 테스트 계획 및 결과 보고서](#-테스트-계획-및-결과-보고서)
-11. [⚙️ CI/CD 구조](#%EF%B8%8F-cicd-구조)
+11. [⚙️ CI/CD 구조 및 스크립트](#%EF%B8%8F-cicd-구조-및-스크립트)
 12. [🚀 CI/CD 배포 결과](#-cicd-배포-결과)
 13. [💬 회고록](#-회고록)
 
@@ -227,7 +227,7 @@ Redis 대신 DB 테이블로 구현하되 `ON DUPLICATE KEY UPDATE`를 활용해
 
 ---
 
-## ⚙️ CI/CD 구조
+## ⚙️ CI/CD 구조 및 스크립트
 <details>
 <summary>아키텍처</summary>
   <img width="4988" height="3084" alt="beatbuddy-service-architecture (4)" src="https://github.com/user-attachments/assets/b9b16887-47bf-429e-a367-9ca11b20bcc3" />
