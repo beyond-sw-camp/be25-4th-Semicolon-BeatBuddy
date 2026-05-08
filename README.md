@@ -444,10 +444,7 @@ pipeline {
 
 ## :film_projector: 주요 기능 시연 영상
 
-<details>
-  <summary>주요 기능 시연 영상</summary>
-  https://github.com/user-attachments/assets/db7087dd-5fd0-4903-8be5-49fc0aee5cd4
-</details>
+> [주요 기능 시연 영상](https://github.com/user-attachments/assets/db7087dd-5fd0-4903-8be5-49fc0aee5cd4)
 
 ---
 
