@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: beatbuddy-backend
+  namespace: beatbuddy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: beatbuddy-backend
+  template:
+    metadata:
+      labels:
+        app: beatbuddy-backend
+    spec:
+      containers:
+        - name: backend
+          image: huisuz/beatbuddy-backend:18
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "100m"
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_MAIL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: beatbuddy-secret
+                  key: MAIL_USERNAME
+            - name: SPRING_MAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: beatbuddy-secret
+                  key: MAIL_PASSWORD
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: beatbuddy-secret
+                  key: JWT_SECRET
+            - name: SPOTIFY_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: beatbuddy-secret
+                  key: SPOTIFY_CLIENT_ID
+            - name: SPOTIFY_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: beatbuddy-secret
+                  key: SPOTIFY_CLIENT_SECRET
+            - name: RAPIDAPI_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: beatbuddy-secret
+                  key: RAPIDAPI_KEY
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: beatbuddy-secret
+                  key: DB_PASSWORD
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: beatbuddy-secret
+                  key: REDIS_PASSWORD
+          volumeMounts:
+            - name: uploads
+              mountPath: /app/uploads
+      volumes:
+        - name: uploads
+          persistentVolumeClaim:
+            claimName: beatbuddy-uploads-pvc
