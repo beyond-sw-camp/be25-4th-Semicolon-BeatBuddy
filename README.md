@@ -28,6 +28,14 @@
     <th>친구</th>
     <th>그룹</th>
   </tr>
+
+  <tr>
+    <td align="center"><img width="120" alt="김예지" src="./introduce/yeazi.png" /></td>
+    <td align="center"><img width="120" alt="박하얀" src="./introduce/hayan.png" /></td>   
+    <td align="center"><img width="120" alt="이다윗" src="./introduce/leedawit.webp" /></td>   
+    <td align="center"><img width="120" alt="황희수" src="./introduce/huisu.png" /></td>
+  </tr>
+  
   <tr align="center">
     <td>김예지</td>
     <td>박하얀</td>
@@ -440,9 +448,17 @@ pipeline {
 
 ## 🚀 CI/CD 배포 결과
 
+<details>
+  <summary>Jenkins Pipeline 성공 여부</summary>
+</details>
+
+<details>
+  <summary>Kubernetes 배포 상태</summary>
+</details>
+
 ---
 
-## :film_projector: 주요 기능 시연 영상
+## 📽️ 주요 기능 시연 영상
 
 > [주요 기능 시연 영상](https://github.com/user-attachments/assets/db7087dd-5fd0-4903-8be5-49fc0aee5cd4)
 
