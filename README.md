@@ -449,11 +449,15 @@ pipeline {
 ## 🚀 CI/CD 배포 결과
 
 <details>
-  <summary>Jenkins Pipeline 성공 여부</summary>
+  <summary>BACKEND CI/CD</summary>
+
+  https://github.com/user-attachments/assets/c7914280-0a82-4a04-8f20-cd8c6a1fd62b
 </details>
 
 <details>
-  <summary>Kubernetes 배포 상태</summary>
+  <summary>FRONTEND CI/CD</summary>
+
+  https://github.com/user-attachments/assets/2b549b54-6434-4f0b-929f-11991a0fa4dc
 </details>
 
 ---
